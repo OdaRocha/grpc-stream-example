@@ -4,7 +4,7 @@ import com.oar.grpc.routeguide.*;
 import com.oar.grpc.routeguide.RouteGuideGrpc.RouteGuideImplBase;
 import com.oar.grpc.service.RouteGuideService;
 import io.grpc.stub.StreamObserver;
-import util.RouteGuideUtil;
+import com.oar.grpc.util.RouteGuideUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,12 +22,11 @@ public class RouteGuideController extends RouteGuideImplBase {
     private static final Logger logger = Logger.getLogger(RouteGuideController.class.getName());
 
     private final RouteGuideService routeGuideService;
-    private final ConcurrentMap<Point, List<RouteNote>> routeNotes = new ConcurrentHashMap<Point, List<RouteNote>>();
+    private final ConcurrentMap<Point, List<RouteNote>> routeNotes = new ConcurrentHashMap<>();
 
     public RouteGuideController() {
         this.routeGuideService = new RouteGuideService();
     }
-
 
     @Override
     public void getFeature(Point request, StreamObserver<Feature> responseObserver) {

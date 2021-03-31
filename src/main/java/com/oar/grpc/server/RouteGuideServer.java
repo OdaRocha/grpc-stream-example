@@ -25,7 +25,7 @@ public class RouteGuideServer {
     /** Create a RouteGuide com.oar.grpc.server using serverBuilder as a base and features as data. */
     public RouteGuideServer(ServerBuilder<?> serverBuilder, int port) {
         this.port = port;
-        server = serverBuilder.addService(new RouteGuideController(routeGuideService))
+        server = serverBuilder.addService(new RouteGuideController())
                 .build();
     }
 

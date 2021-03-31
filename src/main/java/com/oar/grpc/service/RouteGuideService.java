@@ -7,7 +7,7 @@ import com.oar.grpc.routeguide.Point;
 import com.oar.grpc.routeguide.Rectangle;
 import com.oar.grpc.server.RouteGuideServer;
 import io.grpc.stub.StreamObserver;
-import util.RouteGuideUtil;
+import com.oar.grpc.util.RouteGuideUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,7 +71,7 @@ public class RouteGuideService {
      * Parses the JSON input file containing the list of features.
      */
     private List<Feature> getFeaturesFromFile() {
-        URL file = RouteGuideServer.class.getResource("route_guide_db.json");
+        URL file = getClass().getClassLoader().getResource("routeguide/route_guide_db.json");
 
         try (InputStream input = file.openStream()) {
             try (Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
@@ -81,7 +81,7 @@ public class RouteGuideService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Fail to open file route_guide_db.json .", e);
         }
     }

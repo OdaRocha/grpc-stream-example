@@ -1,4 +1,4 @@
-package util;
+package com.oar.grpc.util;
 
 import com.google.protobuf.util.JsonFormat;
 import com.oar.grpc.routeguide.Feature;
@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public final class RouteGuideUtil {
      * Parses the JSON input file containing the list of features.
      */
     public static List<Feature> parseFeatures() throws IOException {
-        URL file = RouteGuideServer.class.getResource("route_guide_db.json");
+        URL file = RouteGuideUtil.class.getClassLoader().getResource("routeguide/route_guide_db.json");
 
         try (InputStream input = file.openStream()) {
             try (Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
